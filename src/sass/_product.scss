@@ -4,7 +4,7 @@
   border-radius: 25px;
   margin: 1%;
   padding: 5px;
-  height: 35vw;
+  height: 40vw;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
@@ -16,11 +16,12 @@
   }
   &__name {
     width: 100%;
-    height: 2vw;
+    height: 4vw;
+    font-size: 2vw;
   }
   &__buy {
     width: 100%;
-    height: 4vw;
+    height: 5vw;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -30,7 +31,7 @@
       margin: 2.5% 0;
       background-color: orangered;
       color: #eee;
-      font-size: 16px;
+      font-size: 1.3vw;
       font-weight: inherit;
       border: none;
       border-radius: 20px;
@@ -78,14 +79,15 @@
   &__sizeblock {
     display: flex;
     flex-flow: row nowrap;
+    justify-content: space-evenly;
     align-items: center;
     width: 100%;
     height: 2vw;
     border-radius: 5px;
   }
   &__size {
-    min-width: 33.3%;
-    width: 50%;
+    min-width: 20%;
+    width: 25%;
     color: #333;
     border: 2px solid #333;
     border-radius: 5px;
@@ -101,7 +103,6 @@
     height: 20%;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-around;
   }
   &__button {
     width: 30%;
@@ -112,10 +113,17 @@
     font-weight: inherit;
     border: none;
     border-radius: 20px;
+    &--disabled {
+      background-color: #333;
+      pointer-events: none;
+    }
+    &--delete {
+      background-color: red;
+    }
   }
   &__price {
-    width: 40%;
-    margin: auto;
+    width: 30%;
+    margin: auto 0;
   }
 }
 .count {
@@ -134,5 +142,9 @@
     border: none;
     border-radius: 5px;
     opacity: 75%;
+    &--hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 }
