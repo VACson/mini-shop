@@ -22,7 +22,7 @@ function ProductInPopUpCart({ id, onClickClose }) {
       <img src={pizza.imageUrl} className="productinpopup__image" alt="" />
       <div className="">{pizza.name}</div>
       <div className="">{pizza.price}</div>
-      <div className="">{cart[itemID].pizzaCount}</div>
+      <div className="">{cart[itemID].count}</div>
       <button className={'modal__button modal__button--delete'} onClick={() => deletePizza()}>
         Видалити з кошика
       </button>

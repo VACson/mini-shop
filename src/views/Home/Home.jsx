@@ -1,7 +1,6 @@
 import React from 'react';
 import useAxios from 'axios-hooks';
 import PizzaBlock from '../../components/PizzaBlock/PizzaBlock';
-import PopUpCart from '../../components/PopUpCart/PopUpCart';
 
 function Home() {
   const [{ data, loading, error }] = useAxios('http://localhost:7000/pizzas');
@@ -18,9 +17,9 @@ function Home() {
           price={pizza.price}
           sizes={pizza.sizes}
           types={pizza.types}
+          className="pizzablock"
         />
       ))}
-      <PopUpCart />
     </div>
   );
 }

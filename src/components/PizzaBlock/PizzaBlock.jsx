@@ -1,42 +1,54 @@
 import React, { useState } from 'react';
 
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { updateCartItem, deleteCartItem } from '../../store/slices/cartSlice';
 
-function PizzaBlock({ id, image, name, price, sizes, type }) {
+function PizzaBlock({ id, image, name, price, sizes, className }) {
   const pizzasInCart = useSelector((state) => state.cartSlice);
   const dispatch = useDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [pizzaCount, setPizzaCount] = useState(1);
-  const [chosenSize, setChosenSize] = useState(null);
+  const [pizzaInfo, setPizzaInfo] = useState({ id: id, count: 1, chosenSize: 0, cartId: '' });
   // console.log(pizzasInCart);
-  const alreadyInCart = pizzasInCart.map((items) => items.id).indexOf(id) >= 0 ? true : false;
+  const alreadyInCart =
+    pizzasInCart
+      .map((items) => items.cartId)
+      .indexOf(name.toString().concat(pizzaInfo.chosenSize)) >= 0
+      ? true
+      : false;
   const modal = () => {
     setModalIsOpen(!modalIsOpen);
-    modalIsOpen && setChosenSize(null);
-    modalIsOpen && setPizzaCount(1);
+    modalIsOpen && setPizzaInfo((prevState) => ({ ...prevState, chosenSize: null }));
+    modalIsOpen && setPizzaInfo((prevState) => ({ ...prevState, count: 1 }));
   };
   const countIncrement = () => {
-    setPizzaCount(pizzaCount + 1);
+    setPizzaInfo((prevState) => ({ ...prevState, count: prevState.count + 1 }));
   };
   const countDecrement = () => {
-    setPizzaCount(pizzaCount - 1);
+    setPizzaInfo((prevState) => ({ ...prevState, count: prevState.count - 1 }));
   };
   const changeSize = (size) => {
-    setChosenSize(size);
+    setPizzaInfo((prevState) => ({
+      ...prevState,
+      chosenSize: size,
+      cartId: name.toString().concat(size),
+    }));
+    console.log(pizzaInfo);
   };
   const addPizza = () => {
-    dispatch(updateCartItem({ id, pizzaCount, chosenSize }), console.log(pizzasInCart));
+    dispatch(updateCartItem(pizzaInfo), console.log(pizzasInCart));
     modal();
   };
   const deletePizza = () => {
-    dispatch(deleteCartItem({ id }), console.log(pizzasInCart));
+    dispatch(deleteCartItem(pizzaInfo), console.log(pizzasInCart));
     modal();
   };
   return (
-    <div className="pizzablock">
-      <img src={image} className="pizzablock__image" alt="" />
+    <div className={className}>
+      <Link to={`/product:${id}`}>
+        <img src={image} className="pizzablock__image" alt="" />
+      </Link>
       <div className="pizzablock__name">{name}</div>
       <div className="pizzablock__buy">
         <button className="pizzablock__buy__button" onClick={() => modal()}>
@@ -55,7 +67,9 @@ function PizzaBlock({ id, image, name, price, sizes, type }) {
                 {sizes.map((item) => (
                   <div
                     className={`${
-                      chosenSize === item ? 'modal__size modal__size--active' : 'modal__size'
+                      pizzaInfo.chosenSize === item
+                        ? 'modal__size modal__size--active'
+                        : 'modal__size'
                     }`}
                     key={item}
                     onClick={() => changeSize(item)}>
@@ -67,12 +81,12 @@ function PizzaBlock({ id, image, name, price, sizes, type }) {
             <div className="count">
               <button
                 className={`${
-                  pizzaCount > 1 ? 'count__button' : 'count__button count__button--hidden'
+                  pizzaInfo.count > 1 ? 'count__button' : 'count__button count__button--hidden'
                 }`}
                 onClick={() => countDecrement()}>
                 -
               </button>
-              <div className="">{pizzaCount}</div>
+              <div className="">{pizzaInfo.count}</div>
               <button className="count__button" onClick={() => countIncrement()}>
                 +
               </button>
@@ -80,7 +94,9 @@ function PizzaBlock({ id, image, name, price, sizes, type }) {
             <div className="modal__order">
               <button
                 className={`${
-                  chosenSize === null ? 'modal__button modal__button--disabled' : 'modal__button'
+                  pizzaInfo.chosenSize === null
+                    ? 'modal__button modal__button--disabled'
+                    : 'modal__button'
                 }`}
                 onClick={() => addPizza()}>
                 Додати до кошика

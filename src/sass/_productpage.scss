@@ -1,0 +1,19 @@
+.pizzapage {
+  width: 60vh;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  margin: 0 auto;
+}
+.backbutton {
+  position: fixed;
+  width: 15vw;
+  margin: 5vh;
+  height: 6vh;
+  text-align: center;
+  background: orange;
+  color: #eee;
+  border-radius: 20px;
+  font-size: 4vh;
+}

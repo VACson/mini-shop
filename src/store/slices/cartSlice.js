@@ -6,7 +6,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     updateCartItem: (state, action) => {
-      const itemID = state.map((items) => items.id).indexOf(action.payload.id);
+      const itemID = state.map((items) => items.cartID).indexOf(action.payload.cartId);
       if (itemID >= 0) {
         state[itemID] = action.payload;
       } else {
@@ -14,7 +14,7 @@ const cartSlice = createSlice({
       }
     },
     deleteCartItem: (state, action) => {
-      const itemID = state.map((items) => items.id).indexOf(action.payload.id);
+      const itemID = state.map((items) => items.cartId).indexOf(action.payload.cartId);
       state.splice(itemID, 1);
     },
   },
