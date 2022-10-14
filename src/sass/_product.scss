@@ -1,0 +1,138 @@
+.pizzablock {
+  width: 25vw;
+  border: 5px solid orange;
+  border-radius: 25px;
+  margin: 1%;
+  padding: 5px;
+  height: 35vw;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-weight: bold;
+  &__image {
+    width: 100%;
+    margin: 5% 0;
+  }
+  &__name {
+    width: 100%;
+    height: 2vw;
+  }
+  &__buy {
+    width: 100%;
+    height: 4vw;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    &__button {
+      width: 60%;
+      height: 80%;
+      margin: 2.5% 0;
+      background-color: orangered;
+      color: #eee;
+      font-size: 16px;
+      font-weight: inherit;
+      border: none;
+      border-radius: 20px;
+    }
+  }
+}
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  &__popup {
+    position: absolute;
+    background: #fff;
+    border: 10px solid orangered;
+    border-radius: 20px;
+    width: 40vw;
+    height: 40%;
+    margin: 15% 30%;
+    display: flex;
+    flex-flow: row wrap;
+  }
+  &__background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ccc;
+    opacity: 50%;
+    z-index: -1;
+  }
+  &__image {
+    padding: 1vw;
+    width: 100px;
+    height: 100px;
+  }
+  &__name {
+    font-size: 24px;
+    width: calc(100% - 100px);
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__sizeblock {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: 100%;
+    height: 2vw;
+    border-radius: 5px;
+  }
+  &__size {
+    min-width: 33.3%;
+    width: 50%;
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    &--active {
+      background-color: #333;
+      color: #eee;
+    }
+  }
+  &__order {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+  }
+  &__button {
+    width: 30%;
+    height: 100%;
+    background-color: orangered;
+    color: #eee;
+    font-size: 16px;
+    font-weight: inherit;
+    border: none;
+    border-radius: 20px;
+  }
+  &__price {
+    width: 40%;
+    margin: auto;
+  }
+}
+.count {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  &__button {
+    width: 30px;
+    height: 30px;
+    background-color: orange;
+    color: #eee;
+    font-size: 20px;
+    text-transform: uppercase;
+    line-height: 30px;
+    font-weight: inherit;
+    border: none;
+    border-radius: 5px;
+    opacity: 75%;
+  }
+}
