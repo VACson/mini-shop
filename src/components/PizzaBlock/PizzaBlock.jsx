@@ -14,7 +14,7 @@ function PizzaBlock({ id, image, name, price, sizes, className }) {
   const alreadyInCart =
     pizzasInCart
       .map((items) => items.cartId)
-      .indexOf(name.toString().concat(pizzaInfo.chosenSize)) >= 0
+      .indexOf(name.toString().concat(' ').concat(pizzaInfo.chosenSize)) >= 0
       ? true
       : false;
   const modal = () => {
@@ -32,7 +32,7 @@ function PizzaBlock({ id, image, name, price, sizes, className }) {
     setPizzaInfo((prevState) => ({
       ...prevState,
       chosenSize: size,
-      cartId: name.toString().concat(size),
+      cartId: name.toString().concat(' ').concat(size),
     }));
     console.log(pizzaInfo);
   };

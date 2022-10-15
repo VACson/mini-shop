@@ -2,8 +2,6 @@ import React from 'react';
 import useAxios from 'axios-hooks';
 import { useParams, Link } from 'react-router-dom';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { updateCartItem, deleteCartItem } from '../../store/slices/cartSlice';
 import PizzaBlock from '../../components/PizzaBlock/PizzaBlock';
 
 function Product() {

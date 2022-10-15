@@ -1,14 +1,19 @@
 import React from 'react';
 import useAxios from 'axios-hooks';
 import PizzaBlock from '../../components/PizzaBlock/PizzaBlock';
+import arraySort from 'array-sort';
+import SortPopUp from '../../components/Sort/SortPopUp';
+import { useSelector } from 'react-redux';
 
 function Home() {
   const [{ data, loading, error }] = useAxios('http://localhost:7000/pizzas');
+  const [sortBy, setSortBy] = React.useState(useSelector((state) => state.sortSlice.value));
+  console.log(sortBy);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{console.log(error)}Error!</p>;
   return (
     <div className="pizzalist">
-      {data.map((pizza) => (
+      {arraySort(data, sortBy).map((pizza) => (
         <PizzaBlock
           key={pizza.id}
           id={pizza.id}
@@ -20,6 +25,7 @@ function Home() {
           className="pizzablock"
         />
       ))}
+      <SortPopUp />
     </div>
   );
 }

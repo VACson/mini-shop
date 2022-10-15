@@ -8,12 +8,14 @@
 }
 .backbutton {
   position: fixed;
-  width: 15vw;
+  width: fit-content;
   margin: 5vh;
-  height: 6vh;
+  padding: 1vw;
+  height: fit-content;
   text-align: center;
   background: orange;
   color: #eee;
   border-radius: 20px;
-  font-size: 4vh;
+  font-size: 2vw;
+  font-weight: bold;
 }

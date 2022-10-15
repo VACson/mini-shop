@@ -6,11 +6,13 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     updateCartItem: (state, action) => {
-      const itemID = state.map((items) => items.cartID).indexOf(action.payload.cartId);
+      const itemID = state.map((items) => items.cartId).indexOf(action.payload.cartId);
       if (itemID >= 0) {
         state[itemID] = action.payload;
+        console.log(itemID, state, action.payload, 'found');
       } else {
         state.push(action.payload);
+        console.log(itemID, state, action.payload, 'not found');
       }
     },
     deleteCartItem: (state, action) => {
