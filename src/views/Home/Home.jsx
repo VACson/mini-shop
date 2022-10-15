@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 function Home() {
   const [{ data, loading, error }] = useAxios('http://localhost:7000/pizzas');
   const [sortBy] = React.useState(useSelector((state) => state.sortSlice.value));
-  console.log(sortBy);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{console.log(error)}Error!</p>;
   return (

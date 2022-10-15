@@ -30,8 +30,13 @@ function PopUpCart() {
         />
         <div className="popupcart__count">{data.length}</div>
         {isOpen &&
-          data.map((item) => (
-            <ProductInPopUpCart id={item.id} onClickClose={setIsOpen} isEmpty={data.length > 1} />
+          data.map((item, index) => (
+            <ProductInPopUpCart
+              key={index + item.id}
+              id={item.id}
+              onClickClose={setIsOpen}
+              isEmpty={data.length > 1}
+            />
           ))}
       </div>
       <Outlet />

@@ -9,7 +9,6 @@ function SortPopUp() {
     setIsOpen(true);
   };
   const chooseSortBy = (item) => {
-    console.log(item);
     dispatch(sortItems(item));
     setIsOpen(false);
   };
